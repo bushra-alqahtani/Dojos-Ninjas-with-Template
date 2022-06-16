@@ -1,0 +1,61 @@
+{% extends 'index.html'%}
+
+{% block content %}
+<!-- add dojo side -->
+
+<div class="container">
+    <h1>Add Dojo </h1>
+    <form method="post" action="/addDojo">
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">name</label>
+            <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">city</label>
+            <input type="text" name="city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">state</label>
+            <input type="text" name="state" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+
+
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">add</button>
+    </form>
+</div>
+
+
+<!-- add ninja side -->
+
+
+<div class="container">
+    <h1>Add ninja </h1>
+    <form method="post" action="/addNinja">
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">first name</label>
+            <input type="text" name="fname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">last name</label>
+            <input type="text" name="lname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">dojo</label>
+            <select name="dojo">
+                <option selected>select dojo</option>
+                {% for dojo in dojos %}
+                <option value="{{dojo.id}}">{{dojo.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">add</button>
+    </form>
+</div>
+
+{% endblock %}

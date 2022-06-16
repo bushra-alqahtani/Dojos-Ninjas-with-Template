@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<style>
+ul {
+    list-style-type: none;
+}
+ul ul {
+    list-style-type: none;
+}
+a{
+    color: aliceblue;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+    <div class="container">
+        {% block content %}
+        <!--forms -->
+        {% endblock %}
+
+        <hr>
+        <div class="mt-5 containerCustom text-center">
+            <h1>ALL The Dojos</h1>
+
+
+            {% for dojo in dojos %}
+            <ul class="none">
+                <li class="inline">
+                    <h5>Ninjas at the {{dojo.name}} dojo - {{dojo.count}}</h5>
+                    <button type="button" class="btn btn-danger"> <a href="/deleteDojo/{{dojo.id}}"> delete </a></button>
+                </li>
+                {% for ninja in dojo.ninjas.all %}
+                <ul>
+                    <li>{{ninja.first_name}} {{ninja.last_name}}</li>
+                </ul>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </div>
+
+    </div>
+</body>
+
+</html>
